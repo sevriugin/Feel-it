@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,8 +11,8 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Rate_It" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="BackgroundView" customModule="Rate_It" customModuleProvider="target">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FeelIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="BackgroundView" customModule="FeelIt" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -29,7 +27,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RdK-K2-4G9">
                                 <rect key="frame" x="57" y="334" width="300" height="220"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-VI-HFt" customClass="EyeView" customModule="Rate_It" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqg-VI-HFt" customClass="EyeView" customModule="FeelIt" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -37,14 +35,14 @@
                                             <constraint firstAttribute="width" constant="140" id="wCa-fu-UtM"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-cl-5cj" customClass="EyeView" customModule="Rate_It" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vf-cl-5cj" customClass="EyeView" customModule="FeelIt" customModuleProvider="target">
                                         <rect key="frame" x="160" y="0.0" width="140" height="140"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="0Vf-cl-5cj" secondAttribute="height" multiplier="1:1" id="aIf-pM-Oi6"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TV-Xm-9dx" customClass="MouthView" customModule="Rate_It" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7TV-Xm-9dx" customClass="MouthView" customModule="FeelIt" customModuleProvider="target">
                                         <rect key="frame" x="90" y="180" width="120" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -66,13 +64,13 @@
                                     <constraint firstItem="7TV-Xm-9dx" firstAttribute="centerX" secondItem="RdK-K2-4G9" secondAttribute="centerX" id="odY-hE-wqi"/>
                                 </constraints>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-tM-7K0" customClass="CustomSlider" customModule="Rate_It" customModuleProvider="target">
+                            <slider hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Tyq-tM-7K0" customClass="CustomSlider" customModule="FeelIt" customModuleProvider="target">
                                 <rect key="frame" x="38" y="754" width="338" height="59"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="KCZ-Z3-01t"/>
                                 </constraints>
                             </slider>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbF-8j-2IW" customClass="TitleView" customModule="Rate_It" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zbF-8j-2IW" customClass="TitleView" customModule="FeelIt" customModuleProvider="target">
                                 <rect key="frame" x="40" y="209.5" width="334" height="45"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -81,9 +79,25 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNa-xg-VFE">
                                 <rect key="frame" x="20" y="91" width="374" height="100.5"/>
-                                <string key="text">How was
-your ride?</string>
+                                <string key="text">What people
+think about?</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" alpha="0.5" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QRt-Xf-7EH">
+                                <rect key="frame" x="50" y="716" width="314" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="5sm-qo-RuI"/>
+                                </constraints>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <textInputTraits key="textInputTraits" keyboardType="twitter" returnKeyType="go"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter @name or #tag" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDI-nz-NUk">
+                                <rect key="frame" x="120" y="770" width="174.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -91,14 +105,18 @@ your ride?</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Tyq-tM-7K0" secondAttribute="trailing" constant="40" id="0RU-kp-gOX"/>
+                            <constraint firstItem="QRt-Xf-7EH" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-50" id="3OQ-xv-oq2"/>
                             <constraint firstItem="Tyq-tM-7K0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="3z7-CB-c8f"/>
+                            <constraint firstItem="QRt-Xf-7EH" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="4Me-hC-UMb"/>
                             <constraint firstItem="RdK-K2-4G9" firstAttribute="top" secondItem="l0v-qH-L5V" secondAttribute="bottom" id="4lw-1l-XMi"/>
                             <constraint firstItem="GUh-cu-2DC" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="47/896" id="6bs-5O-VdD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Tyq-tM-7K0" secondAttribute="bottom" constant="50" id="8g3-DK-uSF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eNa-xg-VFE" secondAttribute="trailing" constant="20" id="Asx-AT-eo4"/>
+                            <constraint firstItem="SDI-nz-NUk" firstAttribute="top" secondItem="QRt-Xf-7EH" secondAttribute="bottom" constant="4" id="FgF-Od-i4d"/>
                             <constraint firstItem="zbF-8j-2IW" firstAttribute="top" secondItem="eNa-xg-VFE" secondAttribute="bottom" constant="18" id="NH6-jT-Oa7"/>
                             <constraint firstItem="l0v-qH-L5V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="OsZ-91-Oij"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="l0v-qH-L5V" secondAttribute="trailing" id="PcB-Ww-DbM"/>
+                            <constraint firstItem="QRt-Xf-7EH" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-96" id="UEp-3c-0jg"/>
                             <constraint firstItem="eNa-xg-VFE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="UwW-4V-4P3"/>
                             <constraint firstItem="l0v-qH-L5V" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="290/896" id="acR-nT-Y0H"/>
                             <constraint firstItem="eNa-xg-VFE" firstAttribute="top" secondItem="GUh-cu-2DC" secondAttribute="bottom" id="c3v-NQ-VPE"/>
@@ -108,6 +126,7 @@ your ride?</string>
                             <constraint firstItem="GUh-cu-2DC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iXx-w8-nIb"/>
                             <constraint firstItem="l0v-qH-L5V" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iq6-aZ-lbw"/>
                             <constraint firstItem="zbF-8j-2IW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="lfu-mr-4UQ"/>
+                            <constraint firstItem="SDI-nz-NUk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mLb-Qr-Jpm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="zbF-8j-2IW" secondAttribute="trailing" constant="40" id="pKc-lQ-jwl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -115,6 +134,7 @@ your ride?</string>
                     <connections>
                         <outlet property="bgView" destination="8bC-Xf-vdC" id="Mbs-N0-xG3"/>
                         <outlet property="faceContainer" destination="RdK-K2-4G9" id="4GU-um-1ES"/>
+                        <outlet property="inputText" destination="QRt-Xf-7EH" id="un2-Cz-8ce"/>
                         <outlet property="leftEye" destination="Sqg-VI-HFt" id="1Z8-uG-94q"/>
                         <outlet property="mouthView" destination="7TV-Xm-9dx" id="jQX-dC-TAw"/>
                         <outlet property="rightEye" destination="0Vf-cl-5cj" id="RRu-iy-gJ7"/>
@@ -124,6 +144,7 @@ your ride?</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="119.86607142857142"/>
         </scene>
     </scenes>
 </document>

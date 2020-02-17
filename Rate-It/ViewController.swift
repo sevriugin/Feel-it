@@ -37,11 +37,19 @@ class ViewController: UIViewController {
     private var shakeTimer: Timer?
     private let startState: Rate = .normal
 
+    @IBOutlet weak var inputText: UITextField!
+    private var score: Float?
+    
+    let twitter = Twitter()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textValueView.updateState(to: startState)
         slider.setValue(startState.keyTime, animated: false)
         sliderMoved(sender: slider)
+        
+        inputText.delegate = self
+        textValueView.isHidden = true
     }
 
     private func startShaking() {
@@ -124,4 +132,76 @@ class ViewController: UIViewController {
         })
     }
 
+}
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.alpha = 1
+        
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        print(textField.text ?? "?")
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        if textField.text != "" {
+            textField.alpha = 0.5
+            return true
+        } else {
+            textField.placeholder = "You must type something"
+            return false
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print(textField.text ?? "?")
+        if let seach = textField.text {
+            self.inputText.isEnabled = false
+            self.inputText.alpha = 0.3
+            var count = 200
+//            self.score = 0.7
+            self.textValueView.isHidden = false
+            _ = Timer.scheduledTimer(withTimeInterval: 0.06, repeats: true) { timer in
+//                print(count)
+                if let saveScore = self.score {
+                    if self.slider.value == saveScore {
+                        timer.invalidate()
+                        self.inputText.isEnabled = true
+                        self.inputText.alpha = 0.5
+                        return;
+                    }
+                }
+                if count == 0 {
+                    timer.invalidate()
+                    self.textValueView.updateState(to: self.startState)
+                    self.slider.setValue(self.startState.keyTime, animated: false)
+                    self.sliderMoved(sender: self.slider)
+                    self.inputText.isEnabled = true
+                    self.inputText.alpha = 0.5
+                } else if count  >= 150 {
+                    let state: Float = Float(count - 150) / 100.0
+                    self.slider.setValue(state, animated: true)
+                    self.sliderMoved(sender: self.slider)
+                    count -= 1
+                } else if count >= 100 {
+                    let state: Float = 0.5 - (Float(count - 100) / 100.0)
+                    self.slider.setValue(state, animated: true)
+                    self.sliderMoved(sender: self.slider)
+                    count -= 1
+                } else if count >= 50 {
+                    let state: Float = 1 - (Float(count - 50) / 100.0)
+                    self.slider.setValue(state, animated: true)
+                    self.sliderMoved(sender: self.slider)
+                    count -= 1
+                } else {
+                    let state: Float = 0.5 + (Float(count) / 100.0)
+                    self.slider.setValue(state, animated: true)
+                    self.sliderMoved(sender: self.slider)
+                    count -= 1
+                }
+            }
+        }
+    }
 }
