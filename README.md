@@ -1,21 +1,13 @@
-# Cuberto's development lab:
+# Tweets sentiment analysis
 
-Cuberto is a leading digital agency with solid design and development expertise. We build mobile and web products for startups.
+Tweets sentimantal analysis using Apple Core ML 2 and Swifter  
 
-# Rate-It
+# Feel-It
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/Cuberto/rate-it/master/LICENSE)
-[![Swift 4.2](https://img.shields.io/badge/Swift-4.2-green.svg?style=flat)](https://developer.apple.com/swift/)
-
-## Requirements
-
-- iOS 10.0+
-- Xcode 10
-
-![Animation](https://raw.githubusercontent.com/Cuberto/rate-it/master/Screenshots/animation.gif)
 
 ## Description
 
-Rate it is showcase of custom user rate screen, with responsive emotional animated controls.
+Feel-it is tweets sentimental analysis App. Just enter @name or #tag and it will performe analysis of last 100 tweets using Core ML trained model. The final score will be calculated based on classification: Negative (-1), Neutral(0) and Positive (1).
 
-Whether you're looking to increase brand engagement, enhance productivity, or cultivate the best online presence for your company, you've come to the right place. Send us a request to [info@cuberto.com](mailto://info@cuberto.com)
+
+Thanks to animation [info@cuberto.com](mailto://info@cuberto.com)
