@@ -4,7 +4,7 @@ Tweets sentimantal analysis using Apple Core ML 2 and Swifter
 
 # Feel-It
 
-
+![Animation](https://github.com/sevriugin/Feel-it/blob/ae21a1bf05157d7ff9b6d6796794926f3d56c78d/Screenshots/feel-it.gif)
 
 
 ## Description
