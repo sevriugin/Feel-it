@@ -4,7 +4,7 @@ Tweets sentimantal analysis using Apple Core ML 2 and Swifter
 
 # Feel-It
 
-
+![Animation](https://raw.githubusercontent.com/Cuberto/rate-it/master/Screenshots/animation.gif)
 
 
 ## Description
