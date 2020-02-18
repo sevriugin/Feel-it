@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Toast
 
+@available(iOS 12.0, *)
 class ViewController: UIViewController {
-
+    
     @IBOutlet private weak var leftEye: EyeView! {
         didSet {
             leftEye.mode = .left
@@ -36,9 +38,8 @@ class ViewController: UIViewController {
     @IBOutlet private weak var faceContainer: UIView!
     private var shakeTimer: Timer?
     private let startState: Rate = .normal
-
+    
     @IBOutlet weak var inputText: UITextField!
-    private var score: Float?
     
     let twitter = Twitter()
     
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
         inputText.delegate = self
         textValueView.isHidden = true
     }
-
+    
     private func startShaking() {
         guard shakeTimer == nil else {
             return
@@ -63,28 +64,28 @@ class ViewController: UIViewController {
             strongSelf.faceContainer.shake(count: 7, amplitude: 3.5)
         }
     }
-
+    
     private func stopShaking() {
         shakeTimer?.invalidate()
         shakeTimer = nil
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         stopShaking()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if shouldShake && !isShaking {
             startShaking()
         }
     }
-
+    
     private var normalizedProgress: Float {
         return (slider.value - slider.minimumValue) / (slider.maximumValue - slider.minimumValue)
     }
-
+    
     private var targetState: Rate {
         return Rate.allCases.reduce((.bad, Float.greatestFiniteMagnitude)) { (acc, state) -> (Rate, Float) in
             let diff = abs(normalizedProgress - state.keyTime)
@@ -94,15 +95,15 @@ class ViewController: UIViewController {
             return acc
         }.0
     }
-
+    
     private var shouldShake: Bool {
         return targetState == .bad
     }
-
+    
     private var isShaking: Bool {
         return shakeTimer != nil
     }
-
+    
     @objc private func sliderMoved(sender: UISlider) {
         let trackPoint = CGPoint(x: slider.frame.width * CGFloat(normalizedProgress), y: slider.frame.midY)
         [leftEye, rightEye, bgView, mouthView].forEach {
@@ -119,7 +120,7 @@ class ViewController: UIViewController {
             stopShaking()
         }
     }
-
+    
     @objc private func endTracking() {
         [leftEye, rightEye].forEach {
             $0.track(to: nil, animated: true)
@@ -131,9 +132,19 @@ class ViewController: UIViewController {
             self.slider.setValue(self.targetState.keyTime, animated: true)
         })
     }
-
+    
 }
 
+//
+//  Extension
+//  ViewController.swift
+//  Rate-It
+//
+//  Created by Sergey Sevriugin on 17/02/2020.
+//  Copyright © 2020 Sergei Sevriugin. All rights reserved.
+//
+
+@available(iOS 12.0, *)
 extension ViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -155,52 +166,106 @@ extension ViewController: UITextFieldDelegate {
         }
     }
     
+    func setInput(enabled: Bool ) -> Void {
+        inputText.isEnabled = enabled
+        inputText.alpha = enabled ? 0.5 : 0.3
+    }
+    
+    func setSlider(value: Float) -> Void {
+        slider.setValue(value, animated: true)
+        sliderMoved(sender: slider)
+    }
+    
+    func makeToast(seach: String, score: Float?, total: Int?) -> Void {
+        if let s = score, let t = total {
+            DispatchQueue.main.async {
+                self.view.makeToast("Score \(s) based \(t) tweets",
+                    duration: 3.0,
+                    position: .top,
+                    title: seach )
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.view.makeToast("Nothing found, try again later", duration: 3.0, position: .top, title: seach)
+            }
+        }
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print(textField.text ?? "?")
+        
         if let seach = textField.text {
-            self.inputText.isEnabled = false
-            self.inputText.alpha = 0.3
-            var count = 200
-//            self.score = 0.7
+            
+            print("Seach for \(seach)")
+            
+            self.setInput(enabled: false)
             self.textValueView.isHidden = false
-            _ = Timer.scheduledTimer(withTimeInterval: 0.06, repeats: true) { timer in
-//                print(count)
-                if let saveScore = self.score {
-                    if self.slider.value == saveScore {
+            
+            var count = 200
+            var state: Float = 0.5
+            
+            // This is the call to get tweets and then predictions
+            //      Initialy twitter.score and twitter.total are both set to nill(s)
+            //      We will check score and total to became avalible in timer closure
+            //      If score and totalare not ready within the 14 sec, we will show 'try later again message'
+            self.twitter.score(q: seach)
+            
+            // Start timer to check score and total of tweets exctacted
+            //      Show emotional changes during the wait period
+            _ = Timer.scheduledTimer(withTimeInterval: 0.07, repeats: true) { timer in
+                
+                if let score = self.twitter.score, let total = self.twitter.total {
+                    if self.slider.value == score {
+                        
                         timer.invalidate()
-                        self.inputText.isEnabled = true
-                        self.inputText.alpha = 0.5
+                        
+                        self.setInput(enabled: true)
+                        
+                        self.makeToast(seach: seach, score: score, total: total)
+                        
                         return;
                     }
                 }
+                
                 if count == 0 {
+                    
                     timer.invalidate()
-                    self.textValueView.updateState(to: self.startState)
-                    self.slider.setValue(self.startState.keyTime, animated: false)
-                    self.sliderMoved(sender: self.slider)
-                    self.inputText.isEnabled = true
-                    self.inputText.alpha = 0.5
+                    
+                    self.setInput(enabled: true)
+                    
+                    if let score = self.twitter.score, let total = self.twitter.total {
+                        
+                        self.setSlider(value: score)
+                        
+                        self.makeToast(seach: seach, score: score, total: total)
+                        
+                    } else {
+                        
+                        self.makeToast(seach: seach, score: nil, total: nil)
+                        
+                    }
+                    
+                    return;
+                    
                 } else if count  >= 150 {
-                    let state: Float = Float(count - 150) / 100.0
-                    self.slider.setValue(state, animated: true)
-                    self.sliderMoved(sender: self.slider)
-                    count -= 1
+                    
+                    state = Float(count - 150) / 100.0
+                    
                 } else if count >= 100 {
-                    let state: Float = 0.5 - (Float(count - 100) / 100.0)
-                    self.slider.setValue(state, animated: true)
-                    self.sliderMoved(sender: self.slider)
-                    count -= 1
+                    
+                    state = 0.5 - (Float(count - 100) / 100.0)
+                    
                 } else if count >= 50 {
-                    let state: Float = 1 - (Float(count - 50) / 100.0)
-                    self.slider.setValue(state, animated: true)
-                    self.sliderMoved(sender: self.slider)
-                    count -= 1
+                    
+                    state = 1 - (Float(count - 50) / 100.0)
+                    
                 } else {
-                    let state: Float = 0.5 + (Float(count) / 100.0)
-                    self.slider.setValue(state, animated: true)
-                    self.sliderMoved(sender: self.slider)
-                    count -= 1
+                    
+                    state = 0.5 + (Float(count) / 100.0)
+                    
                 }
+                
+                self.setSlider(value: state)
+                count -= 1
             }
         }
     }

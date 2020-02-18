@@ -12,11 +12,11 @@ extension Rate {
     var title: String {
         switch self {
         case .bad:
-            return "Hideous"
+            return "Negative"
         case .normal:
-            return "Ok"
+            return "Neutral"
         case .good:
-            return "Good"
+            return "Positive"
         }
     }
 }

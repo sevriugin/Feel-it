@@ -13,6 +13,8 @@
 		85259CC723FB372F00A804DB /* SwifteriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 85259CBC23FB369600A804DB /* SwifteriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		85259CCA23FB3D0000A804DB /* Twitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85259CC923FB3D0000A804DB /* Twitter.swift */; };
 		85259CCC23FB3F4400A804DB /* Secrets.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85259CCB23FB3F4400A804DB /* Secrets.plist */; };
+		85259CCF23FB54C600A804DB /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 85259CCE23FB54C600A804DB /* SwiftyJSON */; };
+		85259CD223FBB35600A804DB /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 85259CD123FBB35600A804DB /* Toast */; };
 		CE42D3E92315110900F6F96A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42D3E82315110900F6F96A /* AppDelegate.swift */; };
 		CE42D3EB2315110900F6F96A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE42D3EA2315110900F6F96A /* ViewController.swift */; };
 		CE42D3EE2315110900F6F96A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE42D3EC2315110900F6F96A /* Main.storyboard */; };
@@ -107,6 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85259CD223FBB35600A804DB /* Toast in Frameworks */,
+				85259CCF23FB54C600A804DB /* SwiftyJSON in Frameworks */,
 				85259CB023FA85FD00A804DB /* IQKeyboardManagerSwift in Frameworks */,
 				85259CC623FB372F00A804DB /* SwifteriOS.framework in Frameworks */,
 			);
@@ -203,6 +207,8 @@
 			name = "Rate-It";
 			packageProductDependencies = (
 				85259CAF23FA85FD00A804DB /* IQKeyboardManagerSwift */,
+				85259CCE23FB54C600A804DB /* SwiftyJSON */,
+				85259CD123FBB35600A804DB /* Toast */,
 			);
 			productName = "Rate-It";
 			productReference = CE42D3E52315110900F6F96A /* FeelIt.app */;
@@ -234,6 +240,8 @@
 			mainGroup = CE42D3DC2315110900F6F96A;
 			packageReferences = (
 				85259CAE23FA85FD00A804DB /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				85259CCD23FB54C600A804DB /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				85259CD023FBB35600A804DB /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = CE42D3E62315110900F6F96A /* Products */;
 			projectDirPath = "";
@@ -530,6 +538,22 @@
 				minimumVersion = 6.5.5;
 			};
 		};
+		85259CCD23FB54C600A804DB /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		85259CD023FBB35600A804DB /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/Toast-Swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -537,6 +561,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 85259CAE23FA85FD00A804DB /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		85259CCE23FB54C600A804DB /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85259CCD23FB54C600A804DB /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		85259CD123FBB35600A804DB /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 85259CD023FBB35600A804DB /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
